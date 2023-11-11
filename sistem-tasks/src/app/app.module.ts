@@ -11,7 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { HeaderComponent } from './components/layout-base/header/header.component';
 import { FooterComponent } from './components/layout-base/footer/footer.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgFor,
     NgIf,
     RouterLink,

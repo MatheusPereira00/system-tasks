@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Tasks } from '../../data-acess/interface/tasks-interface';
 import { TasksService } from '../../data-acess/service/tasks.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 
 @Component({
@@ -16,6 +16,8 @@ export class AddEditTasksComponent implements OnInit {
   public isEdit = false;
   public form: FormGroup = new FormGroup({});
 
+  public taskStatus = ['Pendente', 'Em andamento', 'Concluido'];
+
   private _activedRoute = inject(ActivatedRoute);
   private readonly _tasksService = inject(TasksService);
   private readonly _router = inject(Router);
@@ -23,9 +25,23 @@ export class AddEditTasksComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       id: new FormControl(''),
-      title: new FormControl(''),
-      description: new FormControl(''),
-      status: new FormControl(''),
+      title: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(15),
+        ])
+      ),
+      description: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(25),
+        ])
+      ),
+      status: new FormControl('', Validators.required),
     });
 
     this.id = this._activedRoute.snapshot.paramMap.get('id');
@@ -59,8 +75,12 @@ export class AddEditTasksComponent implements OnInit {
   }
 
   public postTask(): void {
-    const newTask = this.form.getRawValue();
-    this._tasksService.postTask(newTask);
-    this._router.navigate(['/']);
+    if (this.form.valid) {
+      const newTask = this.form.getRawValue();
+      this._tasksService.postTask(newTask);
+      this._router.navigate(['/']);
+    } else {
+      alert('verifique os campos')
+    }
   }
 }

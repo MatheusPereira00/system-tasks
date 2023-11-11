@@ -18,13 +18,9 @@
         placeholder="description"
         formControlName="description"
       />
-      <input
-        type="text"
-        class="form-control"
-        style="margin-bottom: 1rem; margin-top: 1rem"
-        placeholder="Status"
-        formControlName="status"
-      />
+      <select class="form-select mb-2" formControlName="status">
+        <option *ngFor="let task of taskStatus">{{ task }}</option>
+      </select>
     </div>
     <div>
       <button
@@ -33,7 +29,7 @@
         class="btn btn-primary"
         (click)="postTask()"
       >
-        New task
+        Save task
       </button>
       <button
         *ngIf="isEdit"
@@ -41,7 +37,7 @@
         class="btn btn-primary"
         (click)="updateTask()"
       >
-        Edit task
+        Save task
       </button>
       <button class="btn btn-success m-1" routerLink="/">Back</button>
     </div>

@@ -9,24 +9,26 @@
     </thead>
     <tbody>
       <tr *ngFor="let tasks of task">
-        <td>{{ tasks.title }}</td>
+        <td [ngClass]="tasks.status === 'concluido' ? 'todo' : ''">
+          {{ tasks.title }}
+        </td>
         <td>{{ tasks.description }}</td>
         <td>{{ tasks.status }}</td>
         <td>
-          <input id="myCheckbox" type="checkbox" (click)="statusTask()" />
+          <input type="checkbox" />
         </td>
         <td>
-          <button
-            class="btn btn-danger btn-sm m-1"
-            (click)="deletProduct(tasks.id)"
-          >
-            Remove
-          </button>
           <button
             class="btn btn-success btn-sm m-1"
             [routerLink]="['edit', tasks.id]"
           >
             Edit
+          </button>
+          <button
+            class="btn btn-danger btn-sm m-1"
+            (click)="deletProduct(tasks.id)"
+          >
+            Remove
           </button>
         </td>
       </tr>

@@ -6,12 +6,15 @@ import { take } from 'rxjs';
 @Component({
   selector: 'app-list-tasks',
   templateUrl: './list-tasks.component.html',
-  styles: [' .container {  margin-top: 8rem;}'],
+  styles: [
+    ' .container {  margin-top: 8rem;} .todo {text-decoration: line-through}',
+  ],
 })
 export class ListTasksComponent implements OnInit {
   public task!: Tasks[];
-  public taskStatus = false;
   public id!: string | null;
+  public taskStatus = false;
+
   private readonly _tasksService = inject(TasksService);
 
   public readonly getAllTasks$ = this._tasksService.getAllTasks$;
@@ -21,11 +24,7 @@ export class ListTasksComponent implements OnInit {
   }
 
   public deletProduct(id: string | null): void {
-    this._tasksService.deletTask(id).pipe(take(1)).subscribe();
-  }
-
-  public statusTask(): void {
-    this.taskStatus = true;
-    console.log(this.taskStatus);
+    this._tasksService.deletTask(id).pipe(take(1)).subscribe()
+    this._tasksService.getAllTasks();
   }
 }

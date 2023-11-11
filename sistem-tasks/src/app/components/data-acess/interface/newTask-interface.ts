@@ -1,4 +1,4 @@
-export interface Tasks {
+export interface NewTask {
   id: string | null;
   title: string | null;
   description: string | null;
