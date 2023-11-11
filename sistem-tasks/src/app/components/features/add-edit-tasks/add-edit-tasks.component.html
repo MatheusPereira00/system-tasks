@@ -1,6 +1,7 @@
 <div class="container">
   <h1 *ngIf="">Edit task</h1>
-  <h1>New task</h1>
+  <h1 *ngIf="!isEdit">New task</h1>
+  <h1 *ngIf="isEdit">Edit task</h1>
   <form [formGroup]="form">
     <div class="form-group">
       <input
@@ -26,12 +27,23 @@
       />
     </div>
     <div>
-      <button type="submit" class="btn btn-primary" (click)="postTask()">
-        Submit
+      <button
+        *ngIf="!isEdit"
+        type="submit"
+        class="btn btn-primary"
+        (click)="postTask()"
+      >
+        New task
       </button>
-      <button *ngIf="" type="submit" class="btn btn-primary" routerLink="/">
-        Submit
+      <button
+        *ngIf="isEdit"
+        type="submit"
+        class="btn btn-primary"
+        (click)="updateTask()"
+      >
+        Edit task
       </button>
+      <button class="btn btn-success m-1" routerLink="/">Back</button>
     </div>
   </form>
 </div>

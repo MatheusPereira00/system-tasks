@@ -1,26 +1,62 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Tasks } from '../../data-acess/interface/tasks-interface';
 import { TasksService } from '../../data-acess/service/tasks.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-tasks',
   templateUrl: './add-edit-tasks.component.html',
-  styleUrls: ['./add-edit-tasks.component.scss'],
+  styles: [' .container {  margin-top: 8rem;}'],
 })
-export class AddEditTasksComponent {
+export class AddEditTasksComponent implements OnInit {
   public task!: Tasks;
+  public id!: string | null;
+  public isEdit = false;
+  public form: FormGroup = new FormGroup({});
 
+  private _activedRoute = inject(ActivatedRoute);
   private readonly _tasksService = inject(TasksService);
   private readonly _router = inject(Router);
 
-  form = new FormGroup({
-    id: new FormControl(''),
-    title: new FormControl(''),
-    description: new FormControl(''),
-    status: new FormControl(''),
-  });
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      title: new FormControl(''),
+      description: new FormControl(''),
+      status: new FormControl(''),
+    });
+
+    this.id = this._activedRoute.snapshot.paramMap.get('id');
+
+    if (this.id) {
+      this.isEdit = true;
+      this._tasksService
+        .getTaskById(this.id)
+        .pipe(take(1))
+        .subscribe((tasks) => {
+          this.form.patchValue({
+            title: tasks.title,
+            description: tasks.description,
+            status: tasks.status,
+          });
+        });
+    }
+  }
+
+  public updateTask(): void {
+    const title = this.form.get('title')?.value;
+    const description = this.form.get('description')?.value;
+    const status = this.form.get('status')?.value;
+
+    this._tasksService
+      .updateTask(this.id, title, description, status)
+      .subscribe((task) => {
+        this.task = task;
+        this._router.navigate(['/']);
+      });
+  }
 
   public postTask(): void {
     const newTask = this.form.getRawValue();

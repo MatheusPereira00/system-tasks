@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
 import { NewTask, Tasks } from '../interface/tasks-interface';
 import { environment } from 'src/environments/environment';
 
@@ -16,6 +16,9 @@ export class TasksService {
   private _postTaskSubject = new Subject<Tasks>();
   public postTask$ = this._postTaskSubject.asObservable();
 
+  private _deletTaskSubject = new Subject<Tasks[]>();
+  public deletTask$ = this._deletTaskSubject.asObservable();
+
   public getAllTasks(): void {
     this._http
       .get<Tasks[]>(`${environment.apiTasks}`)
@@ -26,6 +29,10 @@ export class TasksService {
       });
   }
 
+  public getTaskById(id: string | null) {
+    return this._http.get<Tasks>(`${environment.apiTasks}/${id}`)
+  }
+
   public postTask(task: NewTask) {
     return this._http
       .post<NewTask>(`${environment.apiTasks}`, task)
@@ -33,5 +40,24 @@ export class TasksService {
       .subscribe((task) => {
         this._postTaskSubject.next(task);
       });
+  }
+
+  public updateTask(
+    id: string | null,
+    title: string | null,
+    description: string | null,
+    status: string | null
+  ): Observable<Tasks> {
+    const updateTask = {
+      id: id,
+      title: title,
+      description: description,
+      status: status,
+    };
+    return this._http.put<Tasks>(`${environment.apiTasks}/${id}`, updateTask);
+  }
+
+  public deletTask(id: string | null) {
+    return this._http.delete<Tasks>(`${environment.apiTasks}/${id}`);
   }
 }

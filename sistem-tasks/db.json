@@ -2,21 +2,15 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Angular",
-      "description": "realized the course in angular",
-      "status": "status"
+      "title": "Spring",
+      "description": "realized the course in spring",
+      "status": "em andamento"
     },
     {
       "id": 2,
-      "title": "Spring",
-      "description": "realized the course in spring",
-      "status": "status"
-    },
-    {
-      "id": 3,
-      "title": "Quarkus",
-      "description": "realized the course in Quarkus",
-      "status": "process"
+      "title": "Angular",
+      "description": "realized the course in Angular",
+      "status": "em andamento"
     }
   ]
 }
