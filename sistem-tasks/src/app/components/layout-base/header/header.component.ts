@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `<nav class="navbar bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" style="color: white;" href="#"
-        >Sistema de gerenciamento de tarefas</a
+        >Task Management System</a
       >
     </div>
   </nav>`,

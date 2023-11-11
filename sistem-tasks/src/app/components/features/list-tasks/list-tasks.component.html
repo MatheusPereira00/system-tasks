@@ -2,21 +2,23 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let tasks of task">
-        <td [ngClass]="tasks.status === 'concluido' ? 'todo' : ''">
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>
           {{ tasks.title }}
         </td>
         <td>{{ tasks.description }}</td>
         <td>{{ tasks.status }}</td>
-        <td>
-          <input type="checkbox" />
-        </td>
         <td>
           <button
             class="btn btn-success btn-sm m-1"

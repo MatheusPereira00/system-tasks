@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `<nav class="navbar bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand m-auto" style="color: white" href="#"
-        >Desenvolvido por Matheus Pereira</a
+        >Developer by Matheus Pereira</a
       >
     </div>
   </nav>`,
