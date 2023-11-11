@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterLink } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,14 +11,25 @@ import { NgFor, NgIf } from '@angular/common';
 import { HeaderComponent } from './components/layout-base/header/header.component';
 import { FooterComponent } from './components/layout-base/footer/footer.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
-  declarations: [AppComponent, ListTasksComponent, AddEditTasksComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+
+    ListTasksComponent,
+    AddEditTasksComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NgFor,
-    NgIf
+    NgIf,
+    RouterLink,
   ],
   providers: [],
   bootstrap: [AppComponent],

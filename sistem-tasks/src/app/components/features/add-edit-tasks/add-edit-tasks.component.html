@@ -1,1 +1,37 @@
-<p>add-edit-tasks works!</p>
+<div class="container">
+  <h1 *ngIf="">Edit task</h1>
+  <h1>New task</h1>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        style="margin-bottom: 1rem; margin-top: 1rem"
+        placeholder="task"
+        formControlName="title"
+      />
+      <input
+        type="text"
+        class="form-control"
+        style="margin-bottom: 1rem; margin-top: 1rem"
+        placeholder="description"
+        formControlName="description"
+      />
+      <input
+        type="text"
+        class="form-control"
+        style="margin-bottom: 1rem; margin-top: 1rem"
+        placeholder="Status"
+        formControlName="status"
+      />
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary" (click)="postTask()">
+        Submit
+      </button>
+      <button *ngIf="" type="submit" class="btn btn-primary" routerLink="/">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

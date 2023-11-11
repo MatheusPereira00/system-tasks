@@ -1,50 +1,29 @@
-<div class="container">
+<div class="container" *ngIf="getAllTasks$ | async as task">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col">Status</th>
-        <th scope="col">Remove</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody *ngIf="getAllTasks$ | async as task">
+    <tbody>
       <tr *ngFor="let tasks of task">
         <td>{{ tasks.title }}</td>
         <td>{{ tasks.description }}</td>
         <td><input id="myCheckbox" type="checkbox" /></td>
-        <td><button class="btn btn-danger btn-sm">Remove</button></td>
+        <td>
+          <button class="btn btn-danger btn-sm m-1">Remove</button>
+          <button
+            class="btn btn-success btn-sm m-1"
+            [routerLink]="['edit', tasks.id]"
+          >
+            Edit
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <button class="btn btn-primary btn-sm" routerLink="add">New Task</button>
 </div>
-
-<!-- 
-
-  <h1>To-Do Application</h1>
-
-  <hr />
-  <form>
-    <div class="form-group">
-      <label for="task">Task</label>
-      <input
-        type="text"
-        class="form-control"
-        id="task"
-        placeholder="Enter task"
-        ngModel
-        name="task"
-        required
-      />
-      <small id="errorMessage" class="form-text text-danger"
-        >Required field</small
-      >
-    </div>
-
-    <button id="submitButton" type="submit" class="btn btn-primary">
-      Submit
-    </button>
-  </form>
-
-  <hr /> -->
-<!-- </div> -->
