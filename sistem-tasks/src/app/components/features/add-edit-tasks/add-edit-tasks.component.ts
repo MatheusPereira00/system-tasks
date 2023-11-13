@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Tasks } from '../../data-acess/interface/tasks-interface';
-import { TasksService } from '../../data-acess/service/tasks.service';
+import { Tasks } from '../../../data-acess/interfaces/tasks-interface';
+import { TasksService } from '../../../data-acess/service/tasks.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs';
@@ -16,7 +16,7 @@ export class AddEditTasksComponent implements OnInit {
   public isEdit = false;
   public form: FormGroup = new FormGroup({});
 
-  public taskStatus = ['Pendente', 'Em andamento', 'Concluido'];
+  public taskStatus = ['pending', 'progress', 'concluded'];
 
   private _activedRoute = inject(ActivatedRoute);
   private readonly _tasksService = inject(TasksService);
@@ -41,7 +41,7 @@ export class AddEditTasksComponent implements OnInit {
           Validators.maxLength(25),
         ])
       ),
-      status: new FormControl('', Validators.required),
+      status: new FormControl('',),
     });
 
     this.id = this._activedRoute.snapshot.paramMap.get('id');

@@ -1,14 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Tasks } from '../../data-acess/interface/tasks-interface';
-import { TasksService } from '../../data-acess/service/tasks.service';
+import { Tasks } from '../../../data-acess/interfaces/tasks-interface';
+import { TasksService } from '../../../data-acess/service/tasks.service';
 import { take } from 'rxjs';
 
 @Component({
   selector: 'app-list-tasks',
   templateUrl: './list-tasks.component.html',
-  styles: [
-    ' .container {  margin-top: 8rem;} .edit-button {text-decoration: line-through}',
-  ],
+  styles: [' .container {  margin-top: 8rem;}'],
 })
 export class ListTasksComponent implements OnInit {
   public task!: Tasks[];
@@ -24,14 +22,18 @@ export class ListTasksComponent implements OnInit {
   }
 
   public deletProduct(id: string | null): void {
-    this._tasksService.deletTask(id).pipe(take(1)).subscribe()
+    this._tasksService.deletTask(id).pipe(take(1)).subscribe();
     this._tasksService.getAllTasks();
   }
 
-  onClick(id: string | null){
+  onClick(id: string | null, title: string | null, description: string | null) {
     this.editMode = true;
-    if(this.editMode) {
-      this._tasksService.updateStatus(id, 'Concluido').subscribe();
+    if (this.editMode) {
+      this._tasksService
+        .updateTask(id, title, description, 'concluded')
+        .pipe(take(1))
+        .subscribe();
+      this._tasksService.getAllTasks();
     }
   }
 }

@@ -13,7 +13,7 @@ export const getValidatorErrorMessage = (
 };
 
 const messages = new Map<string, { message: string; validatorErrorsKey?: string[] }>([
-  ['required', { message: 'Campo Obrigatorio' }],
+  ['required', { message: 'Required field' }],
   [
     'minlength',
     {

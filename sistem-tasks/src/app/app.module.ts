@@ -12,12 +12,11 @@ import { HeaderComponent } from './components/layout-base/header/header.componen
 import { FooterComponent } from './components/layout-base/footer/footer.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CustomValidationComponent } from './components/custom-validation/custom-validation.component';
+import { CustomValidationComponent } from './custom-validation/custom-validation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     ListTasksComponent,
     AddEditTasksComponent,
     HeaderComponent,

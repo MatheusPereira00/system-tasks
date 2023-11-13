@@ -13,7 +13,7 @@ const routes: Routes = [
     component: AddEditTasksComponent,
   },
   {
-    path: 'add',
+    path: 'newTask',
     component: AddEditTasksComponent,
   },
 ];

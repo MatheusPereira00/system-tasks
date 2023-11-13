@@ -12,7 +12,11 @@
     <tbody>
       <tr *ngFor="let task of tasks">
         <td>
-          <input class="edit-button" type="checkbox" (click)="onClick(task.id)"/>
+          <input
+            class="edit-button"
+            type="checkbox"
+            (click)="onClick(task.id, task.title, task.description)"
+          />
         </td>
         <td>
           {{ task.title }}
@@ -36,5 +40,5 @@
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-primary btn-sm" routerLink="add">New Task</button>
+  <button class="btn btn-primary btn-sm" routerLink="newTask">New Task</button>
 </div>

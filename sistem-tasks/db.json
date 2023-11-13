@@ -2,21 +2,15 @@
   "tasks": [
     {
       "id": 1,
-      "title": "teste00",
-      "description": "teste00",
-      "status": "Em andamento"
+      "title": "teste0102",
+      "description": "teste0102",
+      "status": "concluded"
     },
     {
       "id": 2,
-      "title": "teste01",
-      "description": "teste01",
-      "status": "Em andamento"
-    },
-    {
-      "id": 3,
-      "title": "teste03",
-      "description": "teste03",
-      "status": "Em andamento"
+      "title": "teste000",
+      "description": "teste000",
+      "status": "concluded"
     }
   ]
 }

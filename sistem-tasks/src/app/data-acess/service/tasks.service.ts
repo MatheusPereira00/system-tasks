@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, take } from 'rxjs';
-import { Tasks } from '../interface/tasks-interface';
+import { Tasks } from '../interfaces/tasks-interface';
 import { environment } from 'src/environments/environment';
-import { NewTask } from '../interface/newTask-interface';
+import { NewTask } from '../interfaces/newTask-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -56,12 +56,6 @@ export class TasksService {
       status: status,
     };
     return this._http.put<Tasks>(`${environment.apiTasks}/${id}`, updateTask);
-  }
-
-  public updateStatus(id: string | null, status: string | null) {
-    return this._http.put<Tasks>(`${environment.apiTasks}/${id}`, {
-      status,
-    });
   }
 
   public deletTask(id: string | null) {
