@@ -4,23 +4,38 @@
   <h1 *ngIf="isEdit">Edit task</h1>
   <form [formGroup]="form">
     <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        style="margin-bottom: 1rem; margin-top: 1rem"
-        placeholder="task"
-        formControlName="title"
-      />
-      <input
-        type="text"
-        class="form-control"
-        style="margin-bottom: 1rem; margin-top: 1rem"
-        placeholder="description"
-        formControlName="description"
-      />
-      <select class="form-select mb-2" formControlName="status">
-        <option *ngFor="let task of taskStatus">{{ task }}</option>
-      </select>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          style="margin-bottom: 1rem; margin-top: 1rem"
+          placeholder="task"
+          formControlName="title"
+        />
+        <app-custom-validation
+          [controlContainer]="form.get('title')!"
+        ></app-custom-validation>
+      </div>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          style="margin-bottom: 1rem; margin-top: 1rem"
+          placeholder="description"
+          formControlName="description"
+        />
+        <app-custom-validation
+          [controlContainer]="form.get('description')!"
+        ></app-custom-validation>
+      </div>
+      <div>
+        <select class="form-select mb-2" formControlName="status">
+          <option *ngFor="let task of taskStatus">{{ task }}</option>
+        </select>
+        <app-custom-validation
+        [controlContainer]="form.get('status')!"
+      ></app-custom-validation>
+      </div>
     </div>
     <div>
       <button

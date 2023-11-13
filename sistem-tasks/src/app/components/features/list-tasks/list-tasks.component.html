@@ -1,4 +1,4 @@
-<div class="container" *ngIf="getAllTasks$ | async as task">
+<div class="container" *ngIf="getAllTasks$ | async as tasks">
   <table class="table">
     <thead>
       <tr>
@@ -10,25 +10,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tasks of task">
+      <tr *ngFor="let task of tasks">
         <td>
-          <input type="checkbox" />
+          <input class="edit-button" type="checkbox" (click)="onClick(task.id)"/>
         </td>
         <td>
-          {{ tasks.title }}
+          {{ task.title }}
         </td>
-        <td>{{ tasks.description }}</td>
-        <td>{{ tasks.status }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.status }}</td>
         <td>
           <button
             class="btn btn-success btn-sm m-1"
-            [routerLink]="['edit', tasks.id]"
+            [routerLink]="['edit', task.id]"
           >
             Edit
           </button>
           <button
             class="btn btn-danger btn-sm m-1"
-            (click)="deletProduct(tasks.id)"
+            (click)="deletProduct(task.id)"
           >
             Remove
           </button>

@@ -7,13 +7,13 @@ import { take } from 'rxjs';
   selector: 'app-list-tasks',
   templateUrl: './list-tasks.component.html',
   styles: [
-    ' .container {  margin-top: 8rem;} .todo {text-decoration: line-through}',
+    ' .container {  margin-top: 8rem;} .edit-button {text-decoration: line-through}',
   ],
 })
 export class ListTasksComponent implements OnInit {
   public task!: Tasks[];
   public id!: string | null;
-  public taskStatus = false;
+  public editMode = false;
 
   private readonly _tasksService = inject(TasksService);
 
@@ -26,5 +26,12 @@ export class ListTasksComponent implements OnInit {
   public deletProduct(id: string | null): void {
     this._tasksService.deletTask(id).pipe(take(1)).subscribe()
     this._tasksService.getAllTasks();
+  }
+
+  onClick(id: string | null){
+    this.editMode = true;
+    if(this.editMode) {
+      this._tasksService.updateStatus(id, 'Concluido').subscribe();
+    }
   }
 }

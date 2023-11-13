@@ -31,7 +31,7 @@ export class TasksService {
   }
 
   public getTaskById(id: string | null) {
-    return this._http.get<Tasks>(`${environment.apiTasks}/${id}`)
+    return this._http.get<Tasks>(`${environment.apiTasks}/${id}`);
   }
 
   public postTask(task: NewTask) {
@@ -56,6 +56,12 @@ export class TasksService {
       status: status,
     };
     return this._http.put<Tasks>(`${environment.apiTasks}/${id}`, updateTask);
+  }
+
+  public updateStatus(id: string | null, status: string | null) {
+    return this._http.put<Tasks>(`${environment.apiTasks}/${id}`, {
+      status,
+    });
   }
 
   public deletTask(id: string | null) {

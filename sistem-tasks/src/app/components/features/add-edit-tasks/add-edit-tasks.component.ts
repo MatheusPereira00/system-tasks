@@ -29,7 +29,7 @@ export class AddEditTasksComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(5),
           Validators.maxLength(15),
         ])
       ),
@@ -37,7 +37,7 @@ export class AddEditTasksComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(5),
           Validators.maxLength(25),
         ])
       ),
@@ -79,8 +79,6 @@ export class AddEditTasksComponent implements OnInit {
       const newTask = this.form.getRawValue();
       this._tasksService.postTask(newTask);
       this._router.navigate(['/']);
-    } else {
-      alert('verifique os campos')
     }
   }
 }
