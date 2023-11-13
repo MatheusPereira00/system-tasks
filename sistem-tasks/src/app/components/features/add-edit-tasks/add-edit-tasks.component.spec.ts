@@ -15,7 +15,9 @@ describe('AddEditTasksComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the app', () => {
+      const fixture = TestBed.createComponent(AddEditTasksComponent);
+      const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });

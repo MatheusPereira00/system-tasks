@@ -15,7 +15,9 @@ describe('ListTasksComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(ListTasksComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
