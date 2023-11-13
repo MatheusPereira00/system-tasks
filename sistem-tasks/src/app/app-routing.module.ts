@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListTasksComponent } from './components/features/list-tasks/list-tasks.component';
-import { AddEditTasksComponent } from './components/features/add-edit-tasks/add-edit-tasks.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListTasksComponent,
+    redirectTo: 'tasks',
+    pathMatch: 'full',
   },
   {
-    path: 'edit/:id',
-    component: AddEditTasksComponent,
-  },
-  {
-    path: 'newTask',
-    component: AddEditTasksComponent,
+    path: '',
+    loadChildren: () => import('./router.module').then((m) => m.tasksRoutes),
   },
 ];
 

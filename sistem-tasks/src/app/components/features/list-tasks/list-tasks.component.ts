@@ -2,11 +2,20 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Tasks } from '../../../data-acess/interfaces/tasks-interface';
 import { TasksService } from '../../../data-acess/service/tasks.service';
 import { take } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-list-tasks',
-  templateUrl: './list-tasks.component.html',
-  styles: [' .container {  margin-top: 8rem;}'],
+    selector: 'app-list-tasks',
+    templateUrl: './list-tasks.component.html',
+    styles: [' .container {  margin-top: 8rem;}'],
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        RouterLink,
+        AsyncPipe,
+    ],
 })
 export class ListTasksComponent implements OnInit {
   public task!: Tasks[];

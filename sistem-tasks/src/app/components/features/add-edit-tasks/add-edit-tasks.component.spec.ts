@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AddEditTasksComponent } from './add-edit-tasks.component';
 
 describe('AddEditTasksComponent', () => {
@@ -8,8 +8,8 @@ describe('AddEditTasksComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddEditTasksComponent]
-    });
+    imports: [AddEditTasksComponent]
+});
     fixture = TestBed.createComponent(AddEditTasksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -8,8 +8,8 @@ describe('CustomValidationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomValidationComponent]
-    });
+    imports: [CustomValidationComponent]
+});
     fixture = TestBed.createComponent(CustomValidationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

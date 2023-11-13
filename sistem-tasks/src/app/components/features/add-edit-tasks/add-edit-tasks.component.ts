@@ -1,14 +1,24 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Tasks } from '../../../data-acess/interfaces/tasks-interface';
 import { TasksService } from '../../../data-acess/service/tasks.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { take } from 'rxjs';
+import { CustomValidationComponent } from '../../../custom-validation/custom-validation.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-add-edit-tasks',
-  templateUrl: './add-edit-tasks.component.html',
-  styles: [' .container {  margin-top: 8rem;}'],
+    selector: 'app-add-edit-tasks',
+    templateUrl: './add-edit-tasks.component.html',
+    styles: [' .container {  margin-top: 8rem;}'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ReactiveFormsModule,
+        CustomValidationComponent,
+        NgFor,
+        RouterLink,
+    ],
 })
 export class AddEditTasksComponent implements OnInit {
   public task!: Tasks;
