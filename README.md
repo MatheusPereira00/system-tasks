@@ -22,3 +22,7 @@
 
 5. **Testes Unitários:**
    - Escreva testes unitários para pelo menos dois componentes relevantes do seu projeto.✅
+
+5. **Rodar o projeto:**
+   - Para rodar o projeto é apenas usar o comando ng serve.
+   - Para rodar os dados do projeto, no arquivo db.json rodar o comando: json-server --watch db.json.
