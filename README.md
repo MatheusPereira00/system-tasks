@@ -1,6 +1,6 @@
 # system-tasks
 
-**Requisitos do projeto:**
+**Funcionalidades do projeto:**
 
 1. **Listagem de Tarefas:**
    - Crie uma página que exiba todas as tarefas cadastradas.✅
